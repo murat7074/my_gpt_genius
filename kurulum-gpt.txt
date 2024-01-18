@@ -1,0 +1,97 @@
+
+
+
+
+
+```sh
+npx create-next-app@latest appName
+
+```
+
+## Libraries
+
+```sh
+npm install @clerk/nextjs@4.26.1 @prisma/client@5.5.2 @tanstack/react-query@5.8.1 @tanstack/react-query-devtools@5.8.1 axios@1.6.1  openai@4.14.2   react-hot-toast@2.4.1 react-icons@4.11.0
+```
+
+```sh
+npm install -D @tailwindcss/typography@0.5.10  daisyui@3.9.4 prisma@5.5.2
+```
+
+## DaisyUI
+
+- remove default code from globals.css
+  tailwind.config.js
+
+```js
+{
+plugins: [require('@tailwindcss/typography'), require('daisyui')],
+}
+```
+
+## Add Prisma
+
+```sh
+npm install prisma --save-dev
+npm install @prisma/client
+```
+
+```sh
+npx prisma init
+```
+
+
+
+
+//--------------- for daisyui theme. -----------
+
+tailwind.config.js de  aşağıdaki kodu ekle
+
+   daisyui: {
+    themes: ["light", "dark", "cupcake"],
+  },
+
+
+  and add layout.js
+   <html data-theme="cupcake"></html>
+
+   or make it dynamic
+
+
+
+
+   const themes = {
+  winter: 'winter',
+  dracula: 'dracula',
+};
+
+const ThemeToggle = () => {
+  const [theme, setTheme] = useState(themes.winter);
+
+  const toggleTheme = () => {
+    const newTheme = theme === themes.winter ? themes.dracula : themes.winter;
+    document.documentElement.setAttribute('data-theme', newTheme);
+    setTheme(newTheme);
+  };
+
+    return (
+    <button onClick={toggleTheme} className='btn btn-sm btn-outline'>
+      {theme === 'winter' ? (
+        <IoMoon className='h-4 w-4' />
+      ) : (
+        <IoSunnyOutline className='h-4 w-4' />
+      )}
+    </button>
+  );
+};
+export default ThemeToggle;
+
+
+
+
+
+
+```sh
+npm i @tanstack/react-query @tanstack/react-query-devtools
+
+```
