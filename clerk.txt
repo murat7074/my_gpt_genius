@@ -1,41 +1,5 @@
 
 
-https://dashboard.clerk.com/
-https://clerk.com/docs/quickstarts/nextjs?_gl=1*1pa0vod*_gcl_au*MzI2NzU5OTU4LjE3MDQ4MjE5NjU.*_ga*MTM1NzI3NDUwNy4xNzA0ODIxOTY1*_ga_1WMF5X234K*MTcwNDgyMTk2NS4xLjEuMTcwNDgyMjM0NC4wLjAuMA..
-
-
-Install @clerk/nextjs
-Set up your environment keys
-Wrap your Next.js app in <ClerkProvider />
-Limit access to authenticated users
-Embed the <UserButton />
-
-
-.env.local      de
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_c3VubnktdGlnZXItMTEuY2xlcmsuYWNjb3VudHMuZGV2JA   // frontend için
-CLERK_SECRET_KEY=sk_test_pxjZrm9AUTZ2EJrOq0Xicmhlhwuv1vbGvMGvWF2hZ4                        // backand için  (bu yüzden başında NEXT_PUBLIC    yok)
-
-
-
-
-/src/app/layout.tsx
-
-import { ClerkProvider } from '@clerk/nextjs'
-import './globals.css'
- 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <ClerkProvider>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
-  )
-}
 
 
 
@@ -44,87 +8,13 @@ export default function RootLayout({
 
 
 
-middleware.ts
-
-import { authMiddleware } from "@clerk/nextjs";
- 
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
-export default authMiddleware({
- publicRoutes:["/"] // home sayfasında herhengi bir kısıtlama yok. herkes giriş yapabilir.
-});
- 
-export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
-};
 
 
 
 
 
-app/page.tsx
-
-import { UserButton } from "@clerk/nextjs";
- 
-export default function Home() {
-  return (
-    <div className="h-screen">
-      <UserButton afterSignOutUrl="/"/>
-    </div>
-  )
-}
 
 
-
-
------------------- sign-in  and sign-up page ----------------------
-
-
-
-- follow the docs and setup custom pages
-- use clerk's component
-
-app/sign-up/[[...sign-up]]/page.js
-
-```js
-import { SignUp } from '@clerk/nextjs';
-
-const SignUpPage = () => {
-  return (
-    <div className='min-h-screen flex justify-center items-center'>
-      <SignUp />
-    </div>
-  );
-};
-export default SignUpPage;
-```
-
-app/sign-in/[[...sign-in]]/page.js
-
-```js
-import { SignIn } from '@clerk/nextjs';
-
-const SignInPage = () => {
-  return (
-    <div className='min-h-screen flex justify-center items-center'>
-      <SignIn />
-    </div>
-  );
-};
-export default SignInPage;
-```
-
-
-
-.env.local
-
-```js
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/chat
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/chat
-```
 
 
 
