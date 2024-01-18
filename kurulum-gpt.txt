@@ -2,12 +2,6 @@
 
 
 
-
-```sh
-npx create-next-app@latest appName
-
-```
-
 ## Libraries
 
 ```sh
@@ -65,33 +59,8 @@ tailwind.config.js de  aşağıdaki kodu ekle
   dracula: 'dracula',
 };
 
-const ThemeToggle = () => {
-  const [theme, setTheme] = useState(themes.winter);
-
-  const toggleTheme = () => {
-    const newTheme = theme === themes.winter ? themes.dracula : themes.winter;
-    document.documentElement.setAttribute('data-theme', newTheme);
-    setTheme(newTheme);
-  };
-
-    return (
-    <button onClick={toggleTheme} className='btn btn-sm btn-outline'>
-      {theme === 'winter' ? (
-        <IoMoon className='h-4 w-4' />
-      ) : (
-        <IoSunnyOutline className='h-4 w-4' />
-      )}
-    </button>
-  );
-};
-export default ThemeToggle;
 
 
 
 
 
-
-```sh
-npm i @tanstack/react-query @tanstack/react-query-devtools
-
-```
